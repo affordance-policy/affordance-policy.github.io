@@ -15,7 +15,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Affordance-Centric Policy Learning: Sample Efficient and Generalisable Robot Policy Learning using Affordance-Centric Task Frames</title>
+  <title>Affordance-Centric Policy Decomposition: Generalisable and Sample-Efficient Robot Policy Learning for Multi-Object, Long-Horizon Manipulation</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -65,10 +65,10 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title" style="font-size: 2.5em;">
-              Affordance-Centric Policy Learning: </br>
-              <span style="font-size: 0.7em;">Sample Efficient and Generalisable Robot Policy Learning using Affordance-Centric Task Frames</span>
+              Learning from 10 Demos: </br>
+              <span style="font-size: 0.7em;">Generalisable and Sample-Efficient Policy Learning with Oriented Affordance Frames</span>
             </h1>
-
+<!-- 
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://krishanrana.github.io">Krishan Rana</a><sup>1</sup>,</span>
@@ -91,21 +91,22 @@
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>QUT Centre for Robotics</span>
               <span class="author-block"><sup>2</sup>University of Adelaide</span>
-            </div>
+            </div> -->
 
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2410.12124"
+                <!-- <span class="link-block">
+                  <a href="Images/paper.pdf"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                     </span>
                     <span>Paper</span>
                   </a>
-                </span>
+                </span> -->
+
                 <!-- <span class="link-block">
                   <a href=" "
                      class="external-link button is-normal is-rounded is-dark">
@@ -136,7 +137,7 @@
                     </a>
                 </span> -->
                 <!-- Dataset Link. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://x.com/krshnrana/status/1812517940790689852"
                      class="external-link button is-normal is-rounded ">
                     <span class="icon">
@@ -144,7 +145,7 @@
                     </span>
                     <span>Thread</span>
                     </a>
-              </div>
+              </div> -->
             </div>
 
               <br>
@@ -166,7 +167,7 @@
                         <!-- Two videos in a row underneath -->
                         <div class="two-videos-row" style="display: flex; justify-content: space-between;">
                             <div class="carousel-item" style="flex: 1; margin-right: 10px;">
-                                <video id="teaser2" autoplay controls muted loop playsinline width="100%">
+                                <video id="teaser2" autoplay controls loop playsinline width="100%">
                                     <source src="Images/coffee_making_FINAL_compressed.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -178,7 +179,7 @@
                         </div>
                         
                         <p class="has-text-centered" style="color:gray; margin-top: 20px;">
-                            Affordance-centric diffusion policy solving <b>long-horizon, multi-object</b> tasks using the equivalent of only <b>10 full task demonstrations</b>. Each sub-policy indicated in the top left operates within an independeent affordance centric task frame. Abstraction away from images allows us to train each of these policies independently and compose them to solve unseen scene configurations.
+                            Diffusion Policy solving <b>long-horizon, multi-object</b> tasks using the equivalent of only <b>10 full task demonstrations</b>. The colour <span class="gradient-text">gradient</span> of the diffused trajectory represents the predicted <b>self-progress</b> of the sub-policy for the current sub-task. We additionally overlay the current affordance-centric task frame that the sub-policy is operating with respect to.
                         </p>
                     </div>
                 </div>
@@ -199,7 +200,7 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                       <p>
-                        Affordances are central to robotic manipulation, where most tasks can be simplified to interactions with task-specific regions on objects. By focusing on these key regions, we can abstract away task-irrelevant information, simplifying the learning process, and enhancing generalisation. In this paper, we propose an affordance-centric policy-learning approach that centres and appropriately <em>orients</em> a <em>task frame</em> on these affordance regions allowing us to achieve both <b>intra-category invariance</b> -- where policies can generalise across different instances within the same object category -- and <b>spatial invariance</b> --- which enables consistent performance regardless of object placement in the environment. We propose a method to leverage existing generalist large vision models to extract and track these affordance frames, and demonstrate that our approach can learn manipulation tasks using behaviour cloning from as little as 10 demonstrations, with equivalent generalisation to an image-based policy trained on 305 demonstrations.
+                        Imitation learning has unlocked the potential for robots to exhibit highly dexterous behaviours. However, it still struggles with long-horizon, multi-object tasks due to poor sample efficiency and limited generalisation. Existing methods require a substantial number of demonstrations to cover possible task variations, making them costly and often impractical for real-world deployment. We address this challenge by introducing \emph{oriented affordance frames}, a structured representation for state and action spaces that improves spatial and intra-category generalisation and enables policies to be learned efficiently from only 10 demonstrations. More importantly we show how this abstraction allows for compositional generalisation of independently trained sub-policies to solve long-horizon, multi-object tasks. To seamlessly transition between sub-policies, we introduce the notion of self-progress prediction, which we directly derive from the duration of the training demonstrations. We validate our method across three real-world tasks, each requiring multi-step, multi-object interactions. Despite the small dataset, our policies generalise robustly to unseen object appearances, geometries, and spatial arrangements, achieving high success rates without reliance on exhaustive training data. 
                       </p>
                     </div>
                   </div>
@@ -210,22 +211,27 @@
                     <h2 class="title is-3" style="text-align: left;">Overview</h2>
                     <div class="content has-text-justified">
                       <p style="text-align:center;">
-                        <img src="Images/affordance_perception_system.png" class="img-responsive">
+                        <img src="Images/main.png" class="img-responsive">
                       </p>
 
                       <p class="has-text-centered" style="color:gray;">
-                        <span class="dnerf" >Affordance-Centric Policy Learning</span>. <em>Affordance Detection:</em> We propose a framework to detect affordance frames using pre-trained large vision models. <em>Affordance Tracking:</em> Once the frame is detected we utilise Foundation Pose to continuously track the frame in real-time as the robot interacts with it. <em>Policy Learning:</em> At the start of each episode we appropriately orient the frame towards the tool frame of the robot and train a state-based diffusion policy that operates with this frame as its task frame.
+                        We factorise <b>multi-object</b>, <b>long-horizon</b> manipulation tasks into a series of sub-policies trained with respect to an oriented affordance-centric task frame. The relative task frame allows us to learn policies that are spatially invariant, while the specifc placement of the frames at a task-relevant affordance-centric region on an object allows for intra-category invariance. Each diffusion policy is trained to additionally predict <b>self-progress</b> across a sub-task enabling it to autonomously transition between sub-tasks in order to complete longer-horizon tasks.
                       </p>
                       <p>
                       </p>
 
-                      
+                        <!-- <h6> Affordance-Centric Policy Decomposition </h6>
 
-                    
+                          <p>In order to learn sample effient, and generalisable policies for long-horizon, multi-object manipulation tasks, we propose a novel method that leverages <b>affordance-centric task-frames</b>. We decompose policy learning for such tasks into a series of sub-policies each of which is trained to solve a sub-task with respect to an affordance-centric task-frame. To improve data efficiency, we re-orient this frame such that it's <b>funnel axis</b> always points towards the current tool-frame of the robot ensuring the robot consistently operates within the data support of the subsequent sub-policy. The relative task frame allows us to learn policies that are spatially invariant, while the specifc placement of the frames at a task-relevant affordance-centric region on an object allows for intra-category invariance. Each sub-policy is trained using Diffusion Policy from only 10 demonstrations using a fixed set of object instances.</p>
+
+                          <h6> Affordance-Centric Policy Chaining </h6>
+                          
+                          <p> To autonomously chain the sub-policies to solve longer-horizon tasks, we introduce the concept of <b>self-progress</b> to each sub-policy's action-space. This allows the sub-policy to autonomously transition to the next sub-policy upon completion of the current sub-task. This eliminates the need for a learned arbitrator and allows for seamless composition of sub-policies to solve complex, long-horizon, multi-object tasks.</p> -->
+                                                
+                      
                     </div>
                     <br/>
-      
-<!-- 
+
                     <h2 class="title is-small" style="text-align: left; font-size: 1.8  rem;" >Key Insights</h2>
 
                     <h2 id="oaf" class="title is-small" style="text-align: left; font-size: 1.2rem;">Oriented Affordance Frame</h2>
@@ -233,7 +239,7 @@
                     <div class="columns is-centered">
                       <div class="column">
                       <p class="has-text-justified" style="color:gray;font-size: 0.9rem;">
-                        We introduce the <b>oriented affordance task frame</b>, which reorients an object's affordance frame to always align with the robot's tool frame at the start of an episode. This ensures that the robot can interact with objects consistently, regardless of their spatial orientation. By stabilizing the relative action frame, this approach enhances control reliability, prevents awkward robot configurations, and enables seamless composition of sub-policies to solve longer horizon tasks.
+                        We introduce the <b>oriented affordance task frame</b> for training sample efficient and composable diffusion policies. Using an affordance-centric task frame for policy learning enables spatial and intra-category generalisation. By orienting this task frame towards the tool frame of the robot at the start of each episode, we can concentrate the data support of the sub-policy around a known 'funnel axis'. This allows us to maximise the utility of only 10 demonstrations, with the ability to compose sub-policies to solve longer-horizon tasks. Empirical results additionally show that the oriented frame anchors the task frame in tasks where the object is dynamic, preventing the robot from hitting joint limit violations.
                       </p>
 
                       <br>
@@ -242,9 +248,7 @@
                      <img src="Images/oriented_frame_gif_crop.gif" class="img-responsive" style="height: 250px; width: auto;">
                       <br>
                     </div>
-                    </div> -->
-
-                      <!--
+                    </div>
 
                     <h2 id="selfprogress" class="title is-small" style="text-align: left; font-size: 1.2rem;">Policy Self-Progress</h2>
 
@@ -491,27 +495,21 @@
         </div>
       </div>
     </div>
-  </section> -->
-
   </section>
-</section>
 
 
-  <section class="section" id="BibTeX">
+  <!-- <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
         <h2 class="title">BibTeX</h2>
         <pre><code>
-          @misc{rana2024affordancecentricpolicylearningsample,
-            title={Affordance-Centric Policy Learning: Sample Efficient and Generalisable Robot Policy Learning using Affordance-Centric Task Frames}, 
+          @misc{
+            rana2024policyaffordance,
+            title={Affordance-Centric Policy Decomposition: Generalisable and Sample-Efficient Robot Policy Learning for Multi-Object, Long-Horizon Manipulation},
             author={Krishan Rana and Jad Abou-Chakra and Sourav Garg and Robert Lee and Ian Reid and Niko Suenderhauf},
             year={2024},
-            eprint={2410.12124},
-            archivePrefix={arXiv},
-            primaryClass={cs.RO},
-            url={https://arxiv.org/abs/2410.12124}, 
-      }</code></pre>
+          }</code></pre>
       </div>
-    </section>
+    </section> -->
     
     <footer class="footer">
       <div class="container">
